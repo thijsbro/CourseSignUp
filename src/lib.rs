@@ -1,6 +1,5 @@
 
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -18,36 +17,38 @@ Pick three.";
             search(query, contents)
         );
     }
+
+
+
 }
 
-struct Child {
+
+pub struct Child {
     pub first_name: String,
     pub last_name: String,
     pub class: String,
-    pub course_choice: Vec<course>,
+    pub course_choice1: String,
+    pub course_choice2: String,
+    pub course_choice3: String,
 }
 
-iml Child {
-    pub fn new{child_data: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 6 {
-            return  Err("not enough arguments");
+impl Child {
+    pub fn new(child_data: &[String]) -> Result<Child, &'static str> {
+        if child_data.len() < 6 {
+            return Err("not enough arguments");
         }
-        if args.len() > 6 {
+        if child_data.len() > 6 {
             return Err("too many arguments");
         }
+        let first_name = child_data[0].clone();
+        let last_name = child_data[1].clone();
+        let class = child_data[2].clone();
+        let course_choice1 = child_data[3].clone();
+        let course_choice2 = child_data[4].clone();
+        let course_choice3 = child_data[5].clone();
+
+        Ok(Child { first_name, last_name, class, course_choice1, course_choice2, course_choice3 } )
     }
 }
 
 
-
-fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
-
-    for line in contents.lines() {
-        if line.contains(query) {
-            results.push(line);
-        }
-    }
-
-    results
-}
